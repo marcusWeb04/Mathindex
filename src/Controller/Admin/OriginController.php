@@ -2,7 +2,7 @@
 
 namespace App\Controller\Admin;
 
-use Entity\Repository\Course;
+use Entity\Repository\Origine;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
@@ -11,20 +11,20 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class MatiereController extends AbstractController
+class OriginController extends AbstractController
 {
-    #[Route("/matiere", name:"home")]
+    #[Route("/origin", name:"home")]
     public function home(Request $request): Response
     {
-        return $this->render('backoffice/matiere/home.html.twig');
+        return $this->render('backoffice/origin/home.html.twig');
     }
 
-    #[Route("/matiere/add", name:"add")]
+    #[Route("/origin/add", name:"add")]
     public function addContributor(Request $request, EntityManagerInteface $entityManager): Response
     {
-        $matiere = new Course();
+        $origin = new Origine();
 
-        $form = $this->createForm(CourseType::class, $matiere,[
+        $form = $this->createForm(OrigineType::class, $origin,[
             'method' => 'POST'
         ]);
 
@@ -32,22 +32,22 @@ class MatiereController extends AbstractController
 
         if($form->isSubmitted()){
             if ($form->isValid()){
-                $entityManager->$persit($matiere);
+                $entityManager->$persit($origin);
                 $entityManager->flush();
                 return $this->redirectToRoute('add.html.twig');
             }
         }
 
-        return $this->render('backoffice/matiere/add.html.twig',[
+        return $this->render('backoffice/origin/add.html.twig',[
             'form' => $form,
-            'matiere' => $matiere, 
+            'origin' => $origin, 
         ]);
     }
 
     #[Route("/matiere/modify/{id}", name:"modify")]
-    public function modifyContributor(Request $request, Course $matiere, EntityManagerInterface $entityManager): Response
+    public function modifyContributor(Request $request, Origin $origin, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(MatiereType::class, $matiere,[
+        $form = $this->createForm(OriginType::class, $origin,[
             'method' => 'POST'
         ]);
 
@@ -58,21 +58,21 @@ class MatiereController extends AbstractController
                 $entityManager->flush();
 
                 return $this->redirectToRoute('admin_contributeur_moodify',[
-                    'id' => $matiere->getId(),
+                    'id' => $origin->getId(),
                 ]);
             }
 
-            return $this->render('backoffice/matiere/modify.html.twig',[
+            return $this->render('backoffice/origin/modify.html.twig',[
                 'form' => $form,
-                'matiere' => $matiere,
+                'origin' => $origin,
             ]);
         }
     }
 
-    #[Route("/matiere/delete/{id}", name:"delete")]
-    public function deleteContributor(Request $request, Course $matiere, EntityManagerInterface $entityManager): Response
+    #[Route("/origin/delete/{id}", name:"delete")]
+    public function deleteContributor(Request $request, Origine $origin, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(MatiereType::class, $matiere, [
+        $form = $this->createForm(OrigineType::class, $origin, [
             'method' => 'POST',
         ]);
 
@@ -83,14 +83,14 @@ class MatiereController extends AbstractController
                 $entityManager->flush();
 
                 return $this->redirectToRoute('admin_brand_edit', [
-                    'id' => $matiere->getId(),
+                    'id' => $origin->getId(),
                 ]);
             }
         }
 
-        return $this->render('backoffice/matiere/delete.html.twig', [
+        return $this->render('backoffice/origin/delete.html.twig', [
             'form' => $form,
-            'matiere' => $matiere,
+            'origin' => $origin,
         ]);
     }
 }

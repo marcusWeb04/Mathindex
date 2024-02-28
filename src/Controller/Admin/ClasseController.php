@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class ContributorController extends AbstractController
+class ClasseController extends AbstractController
 {
     #[Route("/classe", name:"home")]
     public function home(Request $request): Response
