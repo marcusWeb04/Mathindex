@@ -2,7 +2,7 @@
 
 namespace App\Controller\Admin;
 
-use Entity\Repository\Matiere;
+use Entity\Repository\Course;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,9 +22,9 @@ class ContributorController extends AbstractController
     #[Route("/matiere/add", name:"add")]
     public function addContributor(Request $request, EntityManagerInteface $entityManager): Response
     {
-        $matiere = new Matiere();
+        $matiere = new Course();
 
-        $form = $this->createForm(MatiereType::class, $matiere,[
+        $form = $this->createForm(CourseType::class, $matiere,[
             'method' => 'POST'
         ]);
 
@@ -45,7 +45,7 @@ class ContributorController extends AbstractController
     }
 
     #[Route("/matiere/modify/{id}", name:"modify")]
-    public function modifyContributor(Request $request, Matiere $matiere, EntityManagerInterface $entityManager): Response
+    public function modifyContributor(Request $request, Course $matiere, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(MatiereType::class, $matiere,[
             'method' => 'POST'
@@ -64,13 +64,13 @@ class ContributorController extends AbstractController
 
             return $this->render('backoffice/matiere/modify.html.twig',[
                 'form' => $form,
-                'exercice' => $exercice,
+                'matiere' => $matiere,
             ]);
         }
     }
 
     #[Route("/matiere/delete/{id}", name:"delete")]
-    public function deleteContributor(Request $request, Matiere $matiere, EntityManagerInterface $entityManager): Response
+    public function deleteContributor(Request $request, Course $matiere, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(MatiereType::class, $matiere, [
             'method' => 'POST',
@@ -90,7 +90,7 @@ class ContributorController extends AbstractController
 
         return $this->render('backoffice/matiere/delete.html.twig', [
             'form' => $form,
-            'exercice' => $exercice,
+            'matiere' => $matiere,
         ]);
     }
 }
