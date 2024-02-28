@@ -1,0 +1,96 @@
+<?php 
+
+namespace App\Controller\Admin;
+
+use Entity\Repository\Matiere;
+use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
+class ContributorController extends AbstractController
+{
+    #[Route("/matiere", name:"home")]
+    public function home(Request $request): Response
+    {
+        return $this->render('backoffice/matiere/home.html.twig');
+    }
+
+    #[Route("/matiere/add", name:"add")]
+    public function addContributor(Request $request, EntityManagerInteface $entityManager): Response
+    {
+        $matiere = new Matiere();
+
+        $form = $this->createForm(ExerciceType::class, $matiere,[
+            'method' => 'POST'
+        ]);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted()){
+            if ($form->isValid()){
+                $entityManager->$persit($matiere);
+                $entityManager->flush();
+                return $this->redirectToRoute('add.html.twig');
+            }
+        }
+
+        return $this->render('backoffice/matiere/add.html.twig',[
+            'form' => $form,
+            'matiere' => $matiere, 
+        ]);
+    }
+
+    #[Route("/matiere/modify/{id}", name:"modify")]
+    public function modifyContributor(Request $request, Matiere $matiere, EntityManagerInterface $entityManager): Response
+    {
+        $form = $this->createForm(MatiereType::class, $matiere,[
+            'method' => 'POST'
+        ]);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted()){
+            if($form->isValid()){
+                $entityManager->flush();
+
+                return $this->redirectToRoute('admin_contributeur_moodify',[
+                    'id' => $matiere->getId(),
+                ]);
+            }
+
+            return $this->render('backoffice/matiere/modify.html.twig',[
+                'form' => $form,
+                'exercice' => $exercice,
+            ]);
+        }
+    }
+
+    #[Route("/matiere/delete/{id}", name:"delete")]
+    public function deleteContributor(Request $request, Matiere $matiere, EntityManagerInterface $entityManager): Response
+    {
+        $form = $this->createForm(MatiereType::class, $matiere, [
+            'method' => 'POST',
+        ]);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted()) {
+            if ($form->isValid()) {
+                $entityManager->flush();
+
+                return $this->redirectToRoute('admin_brand_edit', [
+                    'id' => $matiere->getId(),
+                ]);
+            }
+        }
+
+        return $this->render('backoffice/matiere/delete.html.twig', [
+            'form' => $form,
+            'exercice' => $exercice,
+        ]);
+    }
+}
