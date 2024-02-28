@@ -2,7 +2,7 @@
 
 namespace App\Controller\Admin;
 
-use Entity\Repository\Origin;
+use Entity\Repository\Skill;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
@@ -11,20 +11,20 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class OriginController extends AbstractController
+class SkillController extends AbstractController
 {
-    #[Route("/origin", name:"home")]
+    #[Route("/skill", name:"home")]
     public function home(Request $request): Response
     {
-        return $this->render('backoffice/origin/home.html.twig');
+        return $this->render('backoffice/skill/home.html.twig');
     }
 
-    #[Route("/origin/add", name:"add")]
+    #[Route("/skill/add", name:"add")]
     public function addContributor(Request $request, EntityManagerInteface $entityManager): Response
     {
-        $origin = new Origine();
+        $skill = new Skill();
 
-        $form = $this->createForm(OrigineType::class, $origin,[
+        $form = $this->createForm(SkillType::class, $skill,[
             'method' => 'POST'
         ]);
 
@@ -32,7 +32,7 @@ class OriginController extends AbstractController
 
         if($form->isSubmitted()){
             if ($form->isValid()){
-                $entityManager->$persit($origin);
+                $entityManager->$persit($skill);
                 $entityManager->flush();
                 return $this->redirectToRoute('add.html.twig');
             }
@@ -44,10 +44,10 @@ class OriginController extends AbstractController
         ]);
     }
 
-    #[Route("/matiere/modify/{id}", name:"modify")]
-    public function modifyContributor(Request $request, Origin $origin, EntityManagerInterface $entityManager): Response
+    #[Route("/skill/modify/{id}", name:"modify")]
+    public function modifyContributor(Request $request, Skill $skill, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(OriginType::class, $origin,[
+        $form = $this->createForm(SkillType::class, $skill,[
             'method' => 'POST'
         ]);
 
@@ -58,21 +58,21 @@ class OriginController extends AbstractController
                 $entityManager->flush();
 
                 return $this->redirectToRoute('admin_contributeur_moodify',[
-                    'id' => $origin->getId(),
+                    'id' => $skill->getId(),
                 ]);
             }
 
-            return $this->render('backoffice/origin/modify.html.twig',[
+            return $this->render('backoffice/skill/modify.html.twig',[
                 'form' => $form,
-                'origin' => $origin,
+                'skill' => $skill,
             ]);
         }
     }
 
-    #[Route("/origin/delete/{id}", name:"delete")]
-    public function deleteContributor(Request $request, Origine $origin, EntityManagerInterface $entityManager): Response
+    #[Route("/skill/delete/{id}", name:"delete")]
+    public function deleteContributor(Request $request, Skill $skill, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(OrigineType::class, $origin, [
+        $form = $this->createForm(SkillType::class, $skill, [
             'method' => 'POST',
         ]);
 
@@ -83,14 +83,14 @@ class OriginController extends AbstractController
                 $entityManager->flush();
 
                 return $this->redirectToRoute('admin_brand_edit', [
-                    'id' => $origin->getId(),
+                    'id' => $skill->getId(),
                 ]);
             }
         }
 
-        return $this->render('backoffice/origin/delete.html.twig', [
+        return $this->render('backoffice/skill/delete.html.twig', [
             'form' => $form,
-            'origin' => $origin,
+            'skill' => $skill,
         ]);
     }
 }
