@@ -24,7 +24,7 @@ class ContributorController extends AbstractController
     {
         $matiere = new Matiere();
 
-        $form = $this->createForm(ExerciceType::class, $matiere,[
+        $form = $this->createForm(MatiereType::class, $matiere,[
             'method' => 'POST'
         ]);
 
