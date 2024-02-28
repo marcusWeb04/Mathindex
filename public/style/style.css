@@ -1,0 +1,95 @@
+body, aside .container-saint-vincent {
+  display: flex;
+}
+
+.container ul, .container-page nav {
+  display: flex;
+  align-items: center;
+}
+
+aside .container-saint-vincent {
+  justify-content: space-around;
+}
+
+.container-page nav li {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.container, aside .container-option {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+}
+
+.container ul, .container-page nav {
+  list-style: none;
+}
+
+*, ::before, ::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+}
+
+aside {
+  width: 15%;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1% 0;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 48px;
+}
+aside .container-saint-vincent ul {
+  list-style: none;
+}
+aside .container-option {
+  height: 20%;
+}
+
+.container-page {
+  width: 85%;
+  height: 100%;
+}
+.container-page nav {
+  height: 10%;
+}
+.container-page nav li {
+  width: 13%;
+  margin-left: auto;
+  margin-right: 5%;
+}
+.container-page nav li svg {
+  width: 20%;
+}
+.container-page nav li svg path {
+  color: #03053D;
+}
+
+.content-page {
+  height: 90%;
+  width: 100%;
+  background-color: #EFF2F4;
+}
+.content-page h2 {
+  color: #1B3168;
+}
+
+.container {
+  height: 100%;
+  padding-left: 3%;
+}
+.container .content {
+  width: 90%;
+  height: 80%;
+  padding: 2%;
+  border-radius: 10px;
+  background-color: #FFFFFF;
+  border: 1px solid black;
+}/*# sourceMappingURL=style.css.map */
