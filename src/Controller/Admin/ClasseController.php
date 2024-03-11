@@ -13,14 +13,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ClasseController extends AbstractController
 {
-    #[Route("/classe", name:"home")]
-    public function home(Request $request): Response
+    #[Route("/class", name:"homeclass")]
+    public function homeclass(Request $request): Response
     {
         return $this->render('backoffice/classe/home.html.twig');
     }
 
-    #[Route("/classe/add", name:"add")]
-    public function addContributor(Request $request, EntityManagerInteface $entityManager): Response
+    #[Route("/classe/add", name:"addclass")]
+    public function addclass(Request $request, EntityManagerInteface $entityManager): Response
     {
         $class = new Classroom();
 
@@ -44,8 +44,8 @@ class ClasseController extends AbstractController
         ]);
     }
 
-    #[Route("/classe/modify/{id}", name:"modify")]
-    public function modifyContributor(Request $request, Classroom $class, EntityManagerInterface $entityManager): Response
+    #[Route("/classe/modify/{id}", name:"modifyclass")]
+    public function modifyclass(Request $request, Classroom $class, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(ClassroomType::class, $class,[
             'method' => 'POST'
@@ -69,8 +69,8 @@ class ClasseController extends AbstractController
         }
     }
 
-    #[Route("/classe/delete/{id}", name:"delete")]
-    public function deleteContributor(Request $request, Classroom $class, EntityManagerInterface $entityManager): Response
+    #[Route("/classe/delete/{id}", name:"deleteclass")]
+    public function deleteclass(Request $request, Classroom $class, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(ClassroomType::class, $class, [
             'method' => 'POST',

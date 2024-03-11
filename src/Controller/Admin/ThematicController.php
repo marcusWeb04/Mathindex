@@ -13,14 +13,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ThematicController extends AbstractController
 {
-    #[Route("/thematic", name:"home")]
-    public function home(Request $request): Response
+    #[Route("/thematic", name:"homeThematic")]
+    public function homeThematic(Request $request): Response
     {
         return $this->render('backoffice/thematic/home.html.twig');
     }
 
-    #[Route("/thematic/add", name:"add")]
-    public function addContributor(Request $request, EntityManagerInteface $entityManager): Response
+    #[Route("/thematic/add", name:"addThematic")]
+    public function addThematic(Request $request, EntityManagerInteface $entityManager): Response
     {
         $skill = new Skill();
 
@@ -44,8 +44,8 @@ class ThematicController extends AbstractController
         ]);
     }
 
-    #[Route("/thematic/modify/{id}", name:"modify")]
-    public function modifyContributor(Request $request, Thematic $thematic, EntityManagerInterface $entityManager): Response
+    #[Route("/thematic/modify/{id}", name:"modifyThematic")]
+    public function modifyThematic(Request $request, Thematic $thematic, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(ThematicType::class, $thematic,[
             'method' => 'POST'
@@ -69,8 +69,8 @@ class ThematicController extends AbstractController
         }
     }
 
-    #[Route("/skill/delete/{id}", name:"delete")]
-    public function deleteContributor(Request $request, Thematic $thematic, EntityManagerInterface $entityManager): Response
+    #[Route("/skill/delete/{id}", name:"deleteThematic")]
+    public function deleteThematic(Request $request, Thematic $thematic, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(ThematicType::class, $thematic, [
             'method' => 'POST',

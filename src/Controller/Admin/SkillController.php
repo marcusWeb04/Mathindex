@@ -13,14 +13,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class SkillController extends AbstractController
 {
-    #[Route("/skill", name:"home")]
-    public function home(Request $request): Response
+    #[Route("/skill", name:"homeSkill")]
+    public function homeSkill(Request $request): Response
     {
         return $this->render('backoffice/skill/home.html.twig');
     }
 
-    #[Route("/skill/add", name:"add")]
-    public function addContributor(Request $request, EntityManagerInteface $entityManager): Response
+    #[Route("/skill/add", name:"addSkill")]
+    public function addSkill(Request $request, EntityManagerInteface $entityManager): Response
     {
         $skill = new Skill();
 
@@ -44,8 +44,8 @@ class SkillController extends AbstractController
         ]);
     }
 
-    #[Route("/skill/modify/{id}", name:"modify")]
-    public function modifyContributor(Request $request, Skill $skill, EntityManagerInterface $entityManager): Response
+    #[Route("/skill/modify/{id}", name:"modifySkill")]
+    public function modifySkill(Request $request, Skill $skill, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(SkillType::class, $skill,[
             'method' => 'POST'
@@ -69,8 +69,8 @@ class SkillController extends AbstractController
         }
     }
 
-    #[Route("/skill/delete/{id}", name:"delete")]
-    public function deleteContributor(Request $request, Skill $skill, EntityManagerInterface $entityManager): Response
+    #[Route("/skill/delete/{id}", name:"deleteSkill")]
+    public function deleteSkill(Request $request, Skill $skill, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(SkillType::class, $skill, [
             'method' => 'POST',

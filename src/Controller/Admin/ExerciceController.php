@@ -13,14 +13,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ExerciceController extends AbstractController
 {
-    #[Route("/exercice", name:"home")]
-    public function home(Request $request): Response
+    #[Route("/exercice", name:"homeExercice")]
+    public function homeExercice(Request $request): Response
     {
         return $this->render('backoffice/exercice/home.html.twig');
     }
 
-    #[Route("/exercice/add", name:"add")]
-    public function addContributor(Request $request, EntityManagerInteface $entityManager): Response
+    #[Route("/exercice/add", name:"addExercice")]
+    public function addExercice(Request $request, EntityManagerInteface $entityManager): Response
     {
         $exercice = new Exercice();
 
@@ -44,8 +44,8 @@ class ExerciceController extends AbstractController
         ]);
     }
 
-    #[Route("/exercice/modify/{id}", name:"modify")]
-    public function modifyContributor(Request $request, Exercice $exercice, EntityManagerInterface $entityManager): Response
+    #[Route("/exercice/modify/{id}", name:"modifyExercice")]
+    public function modifyExercice(Request $request, Exercice $exercice, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(ExerciceType::class, $exercice,[
             'method' => 'POST'
@@ -69,8 +69,8 @@ class ExerciceController extends AbstractController
         }
     }
 
-    #[Route("/exercice/delete/{id}", name:"delete")]
-    public function deleteContributor(Request $request, Exercice $exercice, EntityManagerInterface $entityManager): Response
+    #[Route("/exercice/delete/{id}", name:"deleteExercice")]
+    public function deleteExercice(Request $request, Exercice $exercice, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(ExerciceType::class, $exercice, [
             'method' => 'POST',

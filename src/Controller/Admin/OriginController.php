@@ -13,14 +13,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class OriginController extends AbstractController
 {
-    #[Route("/origin", name:"home")]
-    public function home(Request $request): Response
+    #[Route("/origin", name:"homeOrigin")]
+    public function homeOrigin(Request $request): Response
     {
         return $this->render('backoffice/origin/home.html.twig');
     }
 
-    #[Route("/origin/add", name:"add")]
-    public function addContributor(Request $request, EntityManagerInteface $entityManager): Response
+    #[Route("/origin/add", name:"addOrigin")]
+    public function addOrigin(Request $request, EntityManagerInteface $entityManager): Response
     {
         $origin = new Origine();
 
@@ -44,8 +44,8 @@ class OriginController extends AbstractController
         ]);
     }
 
-    #[Route("/matiere/modify/{id}", name:"modify")]
-    public function modifyContributor(Request $request, Origin $origin, EntityManagerInterface $entityManager): Response
+    #[Route("/matiere/modify/{id}", name:"modifyOrigin")]
+    public function modifyOrigin(Request $request, Origin $origin, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(OriginType::class, $origin,[
             'method' => 'POST'
@@ -69,8 +69,8 @@ class OriginController extends AbstractController
         }
     }
 
-    #[Route("/origin/delete/{id}", name:"delete")]
-    public function deleteContributor(Request $request, Origine $origin, EntityManagerInterface $entityManager): Response
+    #[Route("/origin/delete/{id}", name:"deleteOrigin")]
+    public function deleteOrigin(Request $request, Origine $origin, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(OrigineType::class, $origin, [
             'method' => 'POST',

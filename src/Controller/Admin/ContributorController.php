@@ -14,7 +14,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class ContributorController extends AbstractController
 {
     #[Route("/contributor", name:"homeContributor")]
-    public function home(Request $request): Response
+    public function homeContributor(Request $request): Response
     {
         return $this->render('backoffice/contributor/home.html.twig');
     }

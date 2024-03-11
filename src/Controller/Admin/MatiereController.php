@@ -13,14 +13,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class MatiereController extends AbstractController
 {
-    #[Route("/matiere", name:"home")]
-    public function home(Request $request): Response
+    #[Route("/matiere", name:"homeMatiere")]
+    public function homeMatiere(Request $request): Response
     {
         return $this->render('backoffice/matiere/home.html.twig');
     }
 
-    #[Route("/matiere/add", name:"add")]
-    public function addContributor(Request $request, EntityManagerInteface $entityManager): Response
+    #[Route("/matiere/add", name:"addMatiere")]
+    public function addMatiere(Request $request, EntityManagerInteface $entityManager): Response
     {
         $matiere = new Course();
 
@@ -44,8 +44,8 @@ class MatiereController extends AbstractController
         ]);
     }
 
-    #[Route("/matiere/modify/{id}", name:"modify")]
-    public function modifyContributor(Request $request, Course $matiere, EntityManagerInterface $entityManager): Response
+    #[Route("/matiere/modify/{id}", name:"modifyMatiere")]
+    public function modifyMatiere(Request $request, Course $matiere, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(MatiereType::class, $matiere,[
             'method' => 'POST'
@@ -69,8 +69,8 @@ class MatiereController extends AbstractController
         }
     }
 
-    #[Route("/matiere/delete/{id}", name:"delete")]
-    public function deleteContributor(Request $request, Course $matiere, EntityManagerInterface $entityManager): Response
+    #[Route("/matiere/delete/{id}", name:"deleteMatiere")]
+    public function deleteMatiere(Request $request, Course $matiere, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(MatiereType::class, $matiere, [
             'method' => 'POST',
