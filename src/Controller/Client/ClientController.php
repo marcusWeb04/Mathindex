@@ -12,7 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ClientController extends AbstractController
 {
-    #[Route("/", name:"home")]
+    #[Route("/home", name:"home")]
     public function home(Request $request): Response
     {
         return $this->render('client/home.html.twig');

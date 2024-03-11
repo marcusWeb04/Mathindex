@@ -8,5 +8,5 @@ admin_controllers:
     resource:
         path: ../src/Controller/Admin/
         namespace: App\Controller\Admin
-    prefix: 'admin'
+    prefix: 'Admin'
     type: attribute
